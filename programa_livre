@@ -1,0 +1,51 @@
+def exibir_lista(tarefas):
+    print("\n--- SUA LISTA DE TAREFAS ---")
+    if not tarefas:
+        print("(Lista vazia)")
+    else:
+        for i, tarefa in enumerate(tarefas, 1):
+            print(f"{i}. {tarefa}")
+    print("-" * 28)
+
+def main():
+    tarefas = []
+
+    while True:
+        exibir_lista(tarefas)
+        print("\nO que você deseja fazer?")
+        print("1 - Adicionar tarefa")
+        print("2 - Concluir / Remover tarefa")
+        print("3 - Sair")
+        
+        opcao = input("Escolha uma opção (1, 2 ou 3): ").strip()
+
+        if opcao == "1":
+            nova_tarefa = input("Digite a tarefa a ser adicionada: ").strip()
+            if nova_tarefa:
+                tarefas.append(nova_tarefa)
+                print(f"✓ Tarefa '{nova_tarefa}' adicionada!")
+            else:
+                print("⚠️ A tarefa não pode estar vazia.")
+
+        elif opcao == "2":
+            if not tarefas:
+                print("⚠️ Não há tarefas para remover.")
+            else:
+                try:
+                    num = int(input("Digite o número da tarefa a remover: "))
+                    if 1 <= num <= len(tarefas):
+                        removida = tarefas.pop(num - 1)
+                        print(f"✓ Tarefa '{removida}' removida!")
+                    else:
+                        print("⚠️ Número inválido.")
+                except ValueError:
+                    print("⚠️ Por favor, digite apenas números.")
+
+        elif opcao == "3":
+            print("\nSaindo... Até mais!")
+            break
+        else:
+            print("⚠️ Opção inválida! Escolha 1, 2 ou 3.")
+
+if __name__ == "__main__":
+  main()
